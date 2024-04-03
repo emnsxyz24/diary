@@ -32,8 +32,8 @@ def delete_diary():
     id_receive = request.form["post_id"]
     img_receive = request.form["imgURI"]
     profile_receive = request.form["profileURI"]
-    os.remove(f'self-learning 7/{img_receive}')
-    os.remove(f'self-learning 7/{profile_receive}')
+    os.remove(img_receive)
+    os.remove(profile_receive)
     
     db.diary.delete_one(
         {'_id': ObjectId(id_receive)}
@@ -52,14 +52,14 @@ def save_diary():
     
     file = request.files["file_give"]
     extension = file.filename.split('.')[-1]
-    filename = f'self-learning 7/static/post-{mytime}.{extension}'
-    filename_mongo = f'static/post-{mytime}.{extension}'
+    filename = 'static/post-{}.{}'.format(mytime, extension)
+    filename_mongo = 'static/post-{}.{}'.format(mytime, extension)
     file.save(filename)
 
     profile = request.files["profile_give"]
     extension = profile.filename.split('.')[-1]
-    profilename = f'self-learning 7/static/profile-{mytime}.{extension}'
-    profilename_mongo = f'static/profile-{mytime}.{extension}'
+    profilename = 'static/profile-{}.{}'.format(mytime, extension)
+    profilename_mongo = 'static/profile-{}.{}'.format(mytime, extension)
     
     profile.save(profilename)
     
