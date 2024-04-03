@@ -53,20 +53,20 @@ def save_diary():
     file = request.files["file_give"]
     extension = file.filename.split('.')[-1]
     filename = 'static/post-{}.{}'.format(mytime, extension)
-    filename_mongo = 'static/post-{}.{}'.format(mytime, extension)
+    # filename_mongo = 'static/post-{}.{}'.format(mytime, extension)
     file.save(filename)
 
     profile = request.files["profile_give"]
     extension = profile.filename.split('.')[-1]
     profilename = 'static/profile-{}.{}'.format(mytime, extension)
-    profilename_mongo = 'static/profile-{}.{}'.format(mytime, extension)
+    # profilename_mongo = 'static/profile-{}.{}'.format(mytime, extension)
     
     profile.save(profilename)
     
     
     doc = {
-    'file': filename_mongo,
-    'profile':profilename_mongo,
+    'file': filename,
+    'profile':profilename,
     'title': title_receive.strip(),
     'content': content_receive.strip(),
     'post_time':mytime_post
